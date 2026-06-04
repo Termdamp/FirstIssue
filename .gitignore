@@ -1,0 +1,12 @@
+# Block backend dependencies
+backend/node_modules/
+
+# Block root dependencies (if you installed concurrently here)
+node_modules/
+
+# Block secrets (CRUCIAL)
+backend/.env
+.env
+
+# Block Mac junk (just in case)
+.DS_Store

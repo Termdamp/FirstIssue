@@ -1,0 +1,24 @@
+{
+  "name": "firstissue",
+  "version": "1.0.0",
+  "description": "> Finding a \"good first issue\" shouldn't be harder than fixing it. FirstIssue is a curated, Tinder-style matchmaker for open-source contributions.",
+  "main": "index.js",
+  "scripts": {
+  "dev": "concurrently \"npm run dev --prefix frontend\" \"node backend/server.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Termdamp/FirstIssue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Termdamp/FirstIssue/issues"
+  },
+  "homepage": "https://github.com/Termdamp/FirstIssue#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
