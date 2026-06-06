@@ -25,7 +25,6 @@ export function useIssues(filters) {
       prevFilters.keyword !== filters.keyword ||
       prevFilters.sort !== filters.sort
 
-    // Update the ref for next comparison
     prevFiltersRef.current = {
       language: filters.language,
       label: filters.label,

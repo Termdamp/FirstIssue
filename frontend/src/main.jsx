@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import AuthCallback from './pages/AuthCallback.jsx'
+import { AuthProvider } from './hooks/useAuth.jsx'
+import './index.css'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+const isCallback = window.location.pathname === '/auth/callback'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <AuthProvider>
+      {isCallback ? <AuthCallback /> : <App />}
+    </AuthProvider>
+  </React.StrictMode>,
 )

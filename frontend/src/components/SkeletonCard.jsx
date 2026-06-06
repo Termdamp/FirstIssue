@@ -1,27 +1,27 @@
-export default function SkeletonCard() {
+export default function SkeletonCard({ index = 0 }) {
   return (
     <div style={{
-      background: '#0f1623',
-      border: '1px solid #1e2a3a',
-      borderRadius: '12px',
-      padding: '20px',
+      background: 'rgba(12,12,24,0.7)',
+      border: '1px solid rgba(255,255,255,0.05)',
+      borderRadius: '18px',
+      padding: '24px',
       display: 'flex',
       flexDirection: 'column',
-      gap: '12px',
+      gap: '14px',
+      animationDelay: `${index * 0.06}s`,
+      backdropFilter: 'blur(12px)',
     }}>
-      <div style={{ height: '11px', background: '#1e2a3a', borderRadius: '4px', width: '40%', animation: 'pulse 1.5s ease-in-out infinite' }} />
-      <div style={{ height: '15px', background: '#1e2a3a', borderRadius: '4px', width: '90%', animation: 'pulse 1.5s ease-in-out infinite 0.1s' }} />
-      <div style={{ height: '15px', background: '#1e2a3a', borderRadius: '4px', width: '70%', animation: 'pulse 1.5s ease-in-out infinite 0.2s' }} />
-      <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-        <div style={{ height: '22px', background: '#1e2a3a', borderRadius: '20px', width: '70px', animation: 'pulse 1.5s ease-in-out infinite 0.3s' }} />
-        <div style={{ height: '22px', background: '#1e2a3a', borderRadius: '20px', width: '90px', animation: 'pulse 1.5s ease-in-out infinite 0.4s' }} />
+      <div className="skeleton-line" style={{ height: '11px', width: '40%', borderRadius: '6px' }} />
+      <div className="skeleton-line" style={{ height: '16px', width: '90%', borderRadius: '6px' }} />
+      <div className="skeleton-line" style={{ height: '16px', width: '68%', borderRadius: '6px' }} />
+      <div style={{ display: 'flex', gap: '7px', marginTop: '2px' }}>
+        <div className="skeleton-line" style={{ height: '24px', width: '70px', borderRadius: '7px' }} />
+        <div className="skeleton-line" style={{ height: '24px', width: '90px', borderRadius: '7px' }} />
       </div>
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 0.8; }
-        }
-      `}</style>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+        <div className="skeleton-line" style={{ height: '10px', width: '44px', borderRadius: '5px' }} />
+        <div className="skeleton-line" style={{ height: '10px', width: '90px', borderRadius: '5px' }} />
+      </div>
     </div>
   )
 }

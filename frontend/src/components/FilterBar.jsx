@@ -7,57 +7,69 @@ const SORT_OPTIONS = [
 ]
 
 const selectStyle = {
-  background: '#0f1623',
-  border: '1px solid #1e2a3a',
-  borderRadius: '8px',
-  padding: '8px 14px',
-  fontSize: '13px',
-  color: '#94a3b8',
-  fontFamily: "'JetBrains Mono', monospace",
+  background: 'rgba(255,255,255,0.03)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  borderRadius: '10px',
+  padding: '10px 36px 10px 16px',
+  fontSize: '12px',
+  color: 'rgba(255,255,255,0.5)',
+  fontFamily: "'Space Grotesk', sans-serif",
+  fontWeight: '500',
   cursor: 'pointer',
   outline: 'none',
   appearance: 'none',
   WebkitAppearance: 'none',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
+  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%237c3aed' d='M5 7L1 3h8z'/%3E%3C/svg%3E")`,
   backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'right 10px center',
-  paddingRight: '28px',
-  transition: 'border-color 0.2s',
+  backgroundPosition: 'right 12px center',
+  transition: 'all 0.25s ease',
+  letterSpacing: '-0.01em',
+  backdropFilter: 'blur(8px)',
 }
 
 export default function FilterBar({ filters, onChange }) {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center' }}>
-      <select
-        value={filters.language}
-        onChange={e => onChange({ ...filters, language: e.target.value, page: 1 })}
-        style={selectStyle}
-      >
-        <option value="">All languages</option>
-        {LANGUAGES.filter(Boolean).map(lang => (
-          <option key={lang} value={lang}>{lang}</option>
-        ))}
-      </select>
-
-      <select
-        value={filters.label}
-        onChange={e => onChange({ ...filters, label: e.target.value, page: 1 })}
-        style={selectStyle}
-      >
-        {LABELS.map(label => (
-          <option key={label} value={label}>{label}</option>
-        ))}
-      </select>
-
-      <select
-        value={filters.sort}
-        onChange={e => onChange({ ...filters, sort: e.target.value, page: 1 })}
-        style={selectStyle}
-      >
-        {SORT_OPTIONS.map(opt => (
-          <option key={opt.value} value={opt.value}>{opt.label}</option>
-        ))}
-      </select>
+    <div className="filter-float" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center' }}>
+      {[
+        {
+          value: filters.language,
+          onChange: (v) => onChange({ ...filters, language: v, page: 1 }),
+          options: [{ label: 'All languages', value: '' }, ...LANGUAGES.filter(Boolean).map(l => ({ label: l, value: l }))],
+        },
+        {
+          value: filters.label,
+          onChange: (v) => onChange({ ...filters, label: v, page: 1 }),
+          options: LABELS.map(l => ({ label: l, value: l })),
+        },
+        {
+          value: filters.sort,
+          onChange: (v) => onChange({ ...filters, sort: v, page: 1 }),
+          options: SORT_OPTIONS.map(o => ({ label: o.label, value: o.value })),
+        },
+      ].map((sel, i) => (
+        <select
+          key={i}
+          value={sel.value}
+          onChange={e => sel.onChange(e.target.value)}
+          style={selectStyle}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)'
+            e.currentTarget.style.color = 'rgba(255,255,255,0.75)'
+            e.currentTarget.style.background = 'rgba(124,58,237,0.07)'
+            e.currentTarget.style.boxShadow = '0 0 16px rgba(124,58,237,0.1)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+            e.currentTarget.style.color = 'rgba(255,255,255,0.5)'
+            e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+            e.currentTarget.style.boxShadow = 'none'
+          }}
+        >
+          {sel.options.map(opt => (
+            <option key={opt.value} value={opt.value} style={{ background: '#0c0c18', color: '#e0e0f0' }}>{opt.label}</option>
+          ))}
+        </select>
+      ))}
     </div>
   )
 }
