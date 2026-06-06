@@ -36,7 +36,7 @@ export default function AvatarPicker({ onBack }) {
     setSaving(true)
     const token = localStorage.getItem("fi_token")
     try {
-      const res = await fetch("http://localhost:5000/api/user/avatar", {
+      const res = await fetch('${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/user/avatar', {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
