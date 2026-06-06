@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
       setAuthLoading(false)
       return
     }
-    fetch('${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/me', {
+    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
