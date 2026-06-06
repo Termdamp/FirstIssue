@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useAuth } from "../hooks/useAuth.jsx"
+
 const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
+
 export default function AuthCallback() {
   const { setUser } = useAuth()
 
@@ -17,36 +19,27 @@ export default function AuthCallback() {
         .then(data => {
           if (data._id) {
             setUser(data)
-            window.location.replace("/")
+            window.location.href = "/"
           } else {
-            window.location.replace("/")
+            window.location.href = "/"
           }
         })
-        .catch(() => window.location.replace("/"))
+        .catch(() => {
+          window.location.href = "/"
+        })
     } else {
-      window.location.replace("/")
+      window.location.href = "/"
     }
   }, [])
 
   return (
     <div style={{
-      minHeight: '100vh', background: '#000',
+      minHeight: '100vh', background: '#0a0e1a',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      flexDirection: 'column', gap: '16px',
+      fontFamily: "'JetBrains Mono', monospace",
+      color: '#334155', fontSize: '13px',
     }}>
-      <div style={{
-        width: '28px', height: '28px',
-        background: 'linear-gradient(135deg, #fff 0%, #c8c8c8 100%)',
-        borderRadius: '7px',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '13px', fontWeight: '800',
-        fontFamily: "'Geist', sans-serif",
-        color: '#000',
-      }}>F</div>
-      <p style={{
-        fontFamily: "'Geist Mono', monospace",
-        color: '#333', fontSize: '12px',
-      }}>Signing you in…</p>
+      signing you in...
     </div>
   )
 }

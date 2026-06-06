@@ -5,12 +5,12 @@ import AuthCallback from './pages/AuthCallback.jsx'
 import { AuthProvider } from './hooks/useAuth.jsx'
 import './index.css'
 
-const isCallback = window.location.pathname === '/auth/callback'
+const path = window.location.pathname
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      {isCallback ? <AuthCallback /> : <App />}
+      {path === '/auth/callback' ? <AuthCallback /> : <App />}
     </AuthProvider>
   </React.StrictMode>,
 )
