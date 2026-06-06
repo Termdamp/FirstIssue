@@ -183,7 +183,7 @@ firstissue/
 ### 1. Clone
 
 ```bash
-git clone https://github.com/your-username/firstissue.git
+git clone https://github.com/Termdamp/FirstIssue
 cd firstissue
 ```
 
@@ -404,7 +404,7 @@ Contributions are welcome. Please open an issue before submitting a PR for major
 
 ```bash
 # Fork the repo, then:
-git clone https://github.com/your-username/firstissue.git
+git clone https://github.com/Termdamp/FirstIssue
 git checkout -b feat/your-feature
 git commit -m "feat: describe your change"
 git push origin feat/your-feature
