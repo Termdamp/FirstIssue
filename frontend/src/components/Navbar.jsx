@@ -176,7 +176,11 @@ export default function Navbar({ activeTab, onTabChange, bookmarkCount, user, on
             </div>
           ) : (
             <button
-              onClick={onLogin}
+              onClick={() => {
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const baseUrl = apiUrl.replace('/api', '');
+  window.location.href = `${baseUrl}/auth/github`;
+}}
               style={{
                 padding: '9px 18px', fontSize: '13px',
                 display: 'flex', alignItems: 'center', gap: '6px',
