@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { timeAgo } from "../utils/helpers"
 import { trackContribution } from "../services/github"
+const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
 
 const LANGUAGE_COLORS = {
   JavaScript: "#f7df1e",
@@ -26,7 +27,7 @@ function Modal({ issue, repoName, onClose, isBookmarked, onToggleBookmark, onNew
 
   useEffect(() => {
     if (!issue.repository_url) return
-    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/repo?url=${encodeURIComponent(issue.repository_url)}`)
+    fetch(`${API}/api/repo?url=${encodeURIComponent(issue.repository_url)}`)
       .then(r => r.json()).then(setRepoData).catch(() => {})
   }, [issue.repository_url])
 

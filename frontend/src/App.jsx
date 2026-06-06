@@ -9,6 +9,8 @@ import { useBookmarks } from "./hooks/useBookmarks"
 import { useAuth } from "./hooks/useAuth"
 import Profile from "./pages/Profile.jsx"
 import AvatarPicker from "./pages/AvatarPicker.jsx"
+const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
+
 
 const BADGE_META = {
   first_look:     { icon: "👀", label: "First Look",     desc: "Viewed your first issue",  color: "#818cf8" },
@@ -36,7 +38,7 @@ export default function App() {
     // Refresh user from server so profile updates
     const token = localStorage.getItem("fi_token")
     if (token) {
-      fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
+      fetch(`${API}/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
         .then(r => r.json())
         .then(data => { if (data._id && setUser) setUser(data) })
         .catch(() => {})
@@ -56,7 +58,7 @@ export default function App() {
   }, [showingBadge, setUser])
 
   function handleLogin() {
-    window.location.href = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/github`
+    window.location.href = `${API}/auth/github`
   }
 
   const { issues, loading, loadingMore, error, hasMore } = useIssues(filters)

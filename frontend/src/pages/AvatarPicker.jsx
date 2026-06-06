@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../hooks/useAuth.jsx"
+const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
 
 const AVATAR_STYLES = [
   { id: "adventurer", label: "Adventurer" },
@@ -36,7 +37,7 @@ export default function AvatarPicker({ onBack }) {
     setSaving(true)
     const token = localStorage.getItem("fi_token")
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/user/avatar`, {
+      const res = await fetch(`${API}/api/user/avatar`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

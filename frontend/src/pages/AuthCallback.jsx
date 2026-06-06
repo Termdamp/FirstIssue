@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useAuth } from "../hooks/useAuth.jsx"
-
+const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
 export default function AuthCallback() {
   const { setUser } = useAuth()
 
@@ -10,7 +10,7 @@ export default function AuthCallback() {
 
     if (token) {
       localStorage.setItem("fi_token", token)
-      fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/me`, {
+      fetch(`${API}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(r => r.json())

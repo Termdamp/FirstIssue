@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react"
 
 const AuthContext = createContext(null)
+const API = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://localhost:5000"
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
@@ -12,7 +13,7 @@ export function AuthProvider({ children }) {
       setAuthLoading(false)
       return
     }
-    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/me`, {
+    fetch(`${API}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
